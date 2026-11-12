@@ -1,0 +1,126 @@
+name: Render trailers
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["README.md"]
+  workflow_dispatch:
+    inputs:
+      tour:
+        description: "Which tour to render"
+        type: choice
+        options: [both, "7540", "7627"]
+        default: both
+      stills:
+        description: "Shot sources: photos (the tour's own) or ai (Workers AI flux, needs CF_ACCOUNT_ID + CF_API_TOKEN secrets)"
+        type: choice
+        options: [photos, ai]
+        default: photos
+      clips:
+        description: "Image-to-video route: none, seedance (ARK_API_KEY) or fal (FAL_KEY)"
+        type: choice
+        options: [none, seedance, fal]
+        default: none
+      quality:
+        description: "draft = 960x540 quick check, final = 1080p"
+        type: choice
+        options: [final, draft]
+        default: final
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      tours: ${{ steps.pick.outputs.tours }}
+    steps:
+      - id: pick
+        run: |
+          t="${{ github.event.inputs.tour || 'both' }}"
+          if [ "$t" = both ]; then echo 'tours=["7540","7627"]' >> "$GITHUB_OUTPUT"; else echo "tours=[\"$t\"]" >> "$GITHUB_OUTPUT"; fi
+
+  render:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        tour: ${{ fromJson(needs.plan.outputs.tours) }}
+    env:
+      PYTHONUTF8: "1"
+      TOUR: ${{ matrix.tour }}
+      STILLS: ${{ github.event.inputs.stills || 'photos' }}
+      CLIPS: ${{ github.event.inputs.clips || 'none' }}
+      QUALITY: ${{ github.event.inputs.quality || 'final' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: System packages (ffmpeg, Noto CJK fonts)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk > /dev/null
+          ffmpeg -version | head -1
+          fc-list | grep -i "Noto Sans CJK" | head -2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Python deps
+        run: pip install -q numpy pillow
+
+      - name: Prompts
+        run: python scripts/write_prompts.py --tour "$TOUR"
+
+      - name: AI stills (Workers AI flux-1-schnell)
+        if: env.STILLS == 'ai'
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: python scripts/gen_stills.py --tour "$TOUR"
+
+      - name: AI clips (image-to-video)
+        if: env.CLIPS != 'none'
+        env:
+          ARK_API_KEY: ${{ secrets.ARK_API_KEY }}
+          ARK_VIDEO_MODEL: ${{ vars.ARK_VIDEO_MODEL }}
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+        run: python scripts/gen_clips.py --tour "$TOUR" --route "$CLIPS"
+
+      - name: Music bed (synthesised, royalty-free)
+        run: python scripts/make_bgm.py --seconds 120 --seed "$TOUR" --out "out/$TOUR/bgm.wav"
+
+      - name: Build
+        run: python scripts/build_trailer.py --tour "$TOUR" --quality "$QUALITY"
+
+      - name: Review sheet
+        run: |
+          f="out/$TOUR/trailer_$TOUR.mp4"; [ "$QUALITY" = draft ] && f="out/$TOUR/trailer_${TOUR}_draft.mp4"
+          python scripts/review_frames.py "$f" --every 3 --out "out/$TOUR/review_$TOUR.jpg"
+          ffprobe -v error -show_entries format=duration -of csv=p=0 "$f"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trailer-${{ matrix.tour }}-${{ github.run_number }}
+          path: |
+            out/${{ matrix.tour }}/trailer_*.mp4
+            out/${{ matrix.tour }}/review_*.jpg
+            tours/${{ matrix.tour }}/shots/**/generated.png
+            tours/${{ matrix.tour }}/shots/**/clip.mp4
+          if-no-files-found: error
+
+      - name: Release
+        if: env.QUALITY == 'final'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="run-${{ github.run_number }}"
+          files="out/$TOUR/trailer_$TOUR.mp4 out/$TOUR/review_$TOUR.jpg"
+          gh release create "$tag" $files \
+            --title "Trailers $tag ($STILLS stills, $CLIPS clips)" \
+            --notes "Rendered by run ${{ github.run_id }}. Sources: $STILLS stills, $CLIPS clips." \
+            || gh release upload "$tag" $files --clobber

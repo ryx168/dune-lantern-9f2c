@@ -1,0 +1,5 @@
+out/
+tours/*/shots/**/clip.mp4
+tours/*/shots/**/generated.png
+__pycache__/
+*.wav
