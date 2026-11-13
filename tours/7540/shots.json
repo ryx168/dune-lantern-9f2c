@@ -1,55 +1,195 @@
 {
-  "title": "北非摩洛哥10日 — Saran-style trailer (tour 7540)",
-  "output": "trailer_7540",
-  "fps": 25,
-  "size": [1920, 1080],
-  "xfade": 0.7,
-  "audio": "out/bgm.wav",
-  "bgm_seed": 7540,
-  "font": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
-  "font_bold": "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
-  "look": "ember",
-  "heroine": "a Taiwanese woman in her late twenties, long black hair loose over one shoulder, cream linen wrap dress, a thin gold bangle, a woven straw tote",
-  "credits": "credits.json",
-  "segments": [
-    {"type": "card", "dur": 4.5, "lines": ["一千年的古城", "一片無垠的沙漠"], "sub": ""},
-    {"type": "shot", "slot": "01_dunes_dawn", "dur": 5.5, "move": "in",
-     "src": "stills/Merzouga_Large_Dune_2011.jpg", "caption": "撒哈拉 · 黎明"},
-    {"type": "shot", "slot": "02_hassan_ii", "dur": 5.0, "move": "in",
-     "src": "stills/1280px-Sunrise_in_Casablanca_with_Hassan_II_Mosque.jpg", "caption": "卡薩布蘭卡 · 哈桑二世清真寺"},
-    {"type": "shot", "slot": "02b_rabat", "dur": 4.5, "move": "panR",
-     "src": "stills/1280px-Morocco_-_Rabat__31387775324_.jpg", "caption": "拉巴特 Rabat"},
-    {"type": "shot", "slot": "03_fes_alley", "dur": 5.0, "move": "out",
-     "src": "stills/1280px-University_karaouiyine_fes.jpg", "caption": "非斯古城 · 世界文化遺產"},
-    {"type": "shot", "slot": "05_cedar_snow", "dur": 4.0, "move": "in",
-     "src": "stills/Neige_ifrane.jpg", "caption": "伊芙蘭 · 中阿特拉斯雪松林"},
-    {"type": "shot", "slot": "05b_midelt", "dur": 4.0, "move": "panL",
-     "src": "stills/Midelt_ayachi.jpg", "caption": "米德爾特 · 阿亞奇峰"},
-    {"type": "shot", "slot": "06_ziz_valley", "dur": 5.0, "move": "panR",
-     "src": "stills/Ziz_Valley_in_the_desert_of_Morocco.jpg", "caption": "齊茲峽谷 · 非洲最大綠洲"},
-    {"type": "card", "dur": 4.0, "lines": ["撒哈拉的星空"], "sub": "騎駱駝 · 看日落 · 宿沙漠"},
-    {"type": "shot", "slot": "07_camel_sunset", "dur": 6.0, "move": "in",
-     "src": "stills/Merzouga_Large_Dune_2011.jpg", "caption": "梅祖卡 · 撒哈拉沙漠"},
-    {"type": "shot", "slot": "08_night_sky", "dur": 4.5, "move": "up",
-     "src": "stills/Merzouga_Large_Dune_2011.jpg", "caption": "沙漠營地 · 滿天星斗"},
-    {"type": "shot", "slot": "09_todra_gorge", "dur": 5.0, "move": "up",
-     "src": "stills/1280px-Todra_Gorge_Morning_2011.jpg", "caption": "托德拉峽谷"},
-    {"type": "shot", "slot": "09b_dades", "dur": 4.0, "move": "out",
-     "src": "stills/Dades_Gorge_2005__Rosino_.jpg", "caption": "達代斯峽谷"},
-    {"type": "shot", "slot": "09c_ouarzazate", "dur": 4.0, "move": "panL",
-     "src": "stills/1280px-Ouarzazate_city__Morocco..jpg", "caption": "瓦爾扎扎特 · 非洲好萊塢"},
-    {"type": "shot", "slot": "10_ait_ben_haddou", "dur": 6.0, "move": "panR",
-     "src": "stills/1280px-Ait_Benhaddou_Pano.jpg", "caption": "艾伊特本哈杜 · 摩洛哥最美古村"},
-    {"type": "shot", "slot": "11_majorelle", "dur": 4.5, "move": "in",
-     "src": "stills/1280px-Le_jardin_des_majorelle_16.JPG", "caption": "馬拉喀什 · 馬約雷勒花園"},
-    {"type": "shot", "slot": "11b_bahia", "dur": 4.0, "move": "panL",
-     "src": "stills/1280px-Bahia_Palace.jpg", "caption": "巴西亞皇宮"},
-    {"type": "shot", "slot": "12_jemaa_dusk", "dur": 5.0, "move": "up",
-     "src": "stills/1280px-Ben_Joussef_Museum_-_panoramio.jpg", "caption": "本優素福神學院"},
-    {"type": "title", "dur": 7.0, "slot": "13_title_plate",
-     "big": "摩洛哥",
-     "lines": ["北非摩洛哥10日", "2026年11月30日 出發"],
-     "sub": "新聯華假期 XO TOURS · xotours.net/7540"},
-    {"type": "credits", "dur": 5.0}
-  ]
+ "title": "北非摩洛哥10日 — Saran-style trailer (tour 7540)",
+ "output": "trailer_7540",
+ "fps": 25,
+ "size": [
+  1920,
+  1080
+ ],
+ "xfade": 0.7,
+ "audio": "out/bgm.wav",
+ "bgm_seed": 7540,
+ "font": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+ "font_bold": "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+ "look": "ember",
+ "heroine": "a Taiwanese woman in her late twenties, long black hair loose over one shoulder, cream linen wrap dress, a thin gold bangle, a woven straw tote",
+ "credits": "credits.json",
+ "segments": [
+  {
+   "type": "card",
+   "dur": 4.5,
+   "lines": [
+    "一千年的古城",
+    "一片無垠的沙漠"
+   ],
+   "sub": ""
+  },
+  {
+   "type": "shot",
+   "slot": "01_dunes_dawn",
+   "dur": 5.5,
+   "move": "in",
+   "src": "stills/cc_dunes_dawn.jpg",
+   "caption": "撒哈拉 · 黎明"
+  },
+  {
+   "type": "shot",
+   "slot": "02_hassan_ii",
+   "dur": 5.0,
+   "move": "in",
+   "src": "stills/1280px-Sunrise_in_Casablanca_with_Hassan_II_Mosque.jpg",
+   "caption": "卡薩布蘭卡 · 哈桑二世清真寺"
+  },
+  {
+   "type": "shot",
+   "slot": "02b_rabat",
+   "dur": 4.5,
+   "move": "panR",
+   "src": "stills/1280px-Morocco_-_Rabat__31387775324_.jpg",
+   "caption": "拉巴特 Rabat"
+  },
+  {
+   "type": "shot",
+   "slot": "03_fes_alley",
+   "dur": 5.0,
+   "move": "out",
+   "src": "stills/1280px-University_karaouiyine_fes.jpg",
+   "caption": "非斯古城 · 世界文化遺產"
+  },
+  {
+   "type": "shot",
+   "slot": "04_tannery",
+   "dur": 4.5,
+   "move": "out",
+   "src": "stills/cc_tannery.jpg",
+   "caption": "非斯 · 皮革染坊"
+  },
+  {
+   "type": "shot",
+   "slot": "05_cedar_snow",
+   "dur": 4.0,
+   "move": "in",
+   "src": "stills/Neige_ifrane.jpg",
+   "caption": "伊芙蘭 · 中阿特拉斯雪松林"
+  },
+  {
+   "type": "shot",
+   "slot": "05b_midelt",
+   "dur": 4.0,
+   "move": "panL",
+   "src": "stills/Midelt_ayachi.jpg",
+   "caption": "米德爾特 · 阿亞奇峰"
+  },
+  {
+   "type": "shot",
+   "slot": "06_ziz_valley",
+   "dur": 5.0,
+   "move": "panR",
+   "src": "stills/Ziz_Valley_in_the_desert_of_Morocco.jpg",
+   "caption": "齊茲峽谷 · 非洲最大綠洲"
+  },
+  {
+   "type": "card",
+   "dur": 4.0,
+   "lines": [
+    "撒哈拉的星空"
+   ],
+   "sub": "騎駱駝 · 看日落 · 宿沙漠"
+  },
+  {
+   "type": "shot",
+   "slot": "07_camel_sunset",
+   "dur": 6.0,
+   "move": "panR",
+   "src": "stills/cc_camel_sunset.jpg",
+   "caption": "梅祖卡 · 駱駝隊 · 撒哈拉"
+  },
+  {
+   "type": "shot",
+   "slot": "08_night_sky",
+   "dur": 4.5,
+   "move": "up",
+   "src": "stills/cc_desert_night.jpg",
+   "caption": "沙漠營地 · 滿天星斗"
+  },
+  {
+   "type": "shot",
+   "slot": "09_todra_gorge",
+   "dur": 5.0,
+   "move": "up",
+   "src": "stills/1280px-Todra_Gorge_Morning_2011.jpg",
+   "caption": "托德拉峽谷"
+  },
+  {
+   "type": "shot",
+   "slot": "09b_dades",
+   "dur": 4.0,
+   "move": "out",
+   "src": "stills/Dades_Gorge_2005__Rosino_.jpg",
+   "caption": "達代斯峽谷"
+  },
+  {
+   "type": "shot",
+   "slot": "09c_ouarzazate",
+   "dur": 4.0,
+   "move": "panL",
+   "src": "stills/1280px-Ouarzazate_city__Morocco..jpg",
+   "caption": "瓦爾扎扎特 · 非洲好萊塢"
+  },
+  {
+   "type": "shot",
+   "slot": "10_ait_ben_haddou",
+   "dur": 6.0,
+   "move": "panR",
+   "src": "stills/1280px-Ait_Benhaddou_Pano.jpg",
+   "caption": "艾伊特本哈杜 · 摩洛哥最美古村"
+  },
+  {
+   "type": "shot",
+   "slot": "11_majorelle",
+   "dur": 4.5,
+   "move": "in",
+   "src": "stills/1280px-Le_jardin_des_majorelle_16.JPG",
+   "caption": "馬拉喀什 · 馬約雷勒花園"
+  },
+  {
+   "type": "shot",
+   "slot": "11b_bahia",
+   "dur": 4.0,
+   "move": "panL",
+   "src": "stills/1280px-Bahia_Palace.jpg",
+   "caption": "巴西亞皇宮"
+  },
+  {
+   "type": "shot",
+   "slot": "11c_ben_youssef",
+   "dur": 4.0,
+   "move": "up",
+   "src": "stills/1280px-Ben_Joussef_Museum_-_panoramio.jpg",
+   "caption": "本優素福神學院"
+  },
+  {
+   "type": "shot",
+   "slot": "12_jemaa_dusk",
+   "dur": 5.0,
+   "move": "panL",
+   "src": "stills/cc_jemaa_dusk.jpg",
+   "caption": "傑馬夫納廣場 · 夜市"
+  },
+  {
+   "type": "title",
+   "dur": 7.0,
+   "slot": "13_title_plate",
+   "big": "摩洛哥",
+   "lines": [
+    "北非摩洛哥10日",
+    "2026年11月30日 出發"
+   ],
+   "sub": "新聯華假期 XO TOURS · xotours.net/7540"
+  },
+  {
+   "type": "credits",
+   "dur": 5.0
+  }
+ ]
 }
